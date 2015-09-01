@@ -9,16 +9,20 @@
 import UIKit
 import MultipeerConnectivity
 
-class UserNameListTableViewController: UITableViewController, MCBrowserViewControllerDelegate, MCSessionDelegate {
+class UserNameListTableViewController: UITableViewController, MCSessionDelegate, MCNearbyServiceBrowserDelegate {
     
     let serviceType = "LunchWithMe"
     
     var userName: String = ""
     
-    var browser : MCBrowserViewController!
     var assistant : MCAdvertiserAssistant!
     var session : MCSession!
     var peerID: MCPeerID!
+    
+    var mybrowser: MCNearbyServiceBrowser!
+    
+    var listOfPeers: [String] = []
+    var listOfConnectedPeers: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,25 +32,20 @@ class UserNameListTableViewController: UITableViewController, MCBrowserViewContr
         self.session = MCSession(peer: peerID)
         self.session.delegate = self
         
-        // create the browser viewcontroller with a unique service name
-        self.browser = MCBrowserViewController(serviceType:serviceType,
-            session:self.session)
-        
-        self.browser.maximumNumberOfPeers = 4
-        
-        self.browser.delegate = self;
-        
         self.assistant = MCAdvertiserAssistant(serviceType:serviceType,
             discoveryInfo:nil, session:self.session)
         
         // tell the assistant to start advertising our fabulous chat
         self.assistant.start()
         
+        self.mybrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: serviceType)
+        self.mybrowser.delegate = self
+        self.mybrowser.startBrowsingForPeers()
+        
         self.navigationItem.setHidesBackButton(true, animated: false)
                 
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "showBrowser:"), animated: true)
+//        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "showBrowser:"), animated: true)
         
-        self.presentViewController(self.browser, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,52 +64,45 @@ class UserNameListTableViewController: UITableViewController, MCBrowserViewContr
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.session.connectedPeers.count
+        return self.listOfPeers.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("userNameCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
         
-        let buddyName = session.connectedPeers[indexPath.row].displayName
+        let buddyName = listOfPeers[indexPath.row]
         
         cell.textLabel?.text = buddyName
 
         return cell
     }
+    
+    // MARK: Browse Delegates
+    func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
+        
+        listOfPeers.append(peerID.displayName)
+
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
+
+    }
+    
+    func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {
+        
+    }
 
     // MARK: - Peer
-    @IBAction func showBrowser(sender: UIButton) {
-        // Show the browser view controller
-        self.presentViewController(self.browser, animated: true, completion: nil)
-    }
-    
-    func browserViewControllerDidFinish(
-        browserViewController: MCBrowserViewController!)  {
-            // Called when the browser view controller is dismissed (ie the Done
-            // button was tapped)
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func browserViewControllerWasCancelled(
-        browserViewController: MCBrowserViewController!)  {
-            // Called when the browser view controller is cancelled
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     func session(session: MCSession!, didReceiveData data: NSData!,
         fromPeer peerID: MCPeerID!)  {
             // Called when a peer sends an NSData to us
             
-            // This needs to run on the main queue
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                var msg = NSString(data: data, encoding: NSUTF8StringEncoding)
-                
-                //                self.updateChat(msg! as String, fromPeer: peerID)
-            }
     }
     
     // The following methods do nothing, but the MCSessionDelegate protocol
@@ -138,6 +130,7 @@ class UserNameListTableViewController: UITableViewController, MCBrowserViewContr
         didChangeState state: MCSessionState)  {
             
             if state == MCSessionState.Connected {
+                self.listOfConnectedPeers.append(peerID.displayName)
                 dispatch_async(dispatch_get_main_queue()) {
                     
                     self.tableView.reloadData()
