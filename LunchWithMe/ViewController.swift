@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate {
     
-    let serviceType = "LCOC-Chat"
+    let serviceType = "LunchWithMe"
     
     var browser : MCBrowserViewController!
     var assistant : MCAdvertiserAssistant!
@@ -22,21 +22,34 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     @IBOutlet var messageField: UITextField!*/
     
     
-    @IBOutlet weak var chatView: UITextView!
-    @IBOutlet weak var messageField: UITextField!
-    
+    @IBOutlet weak var userListView: UITextView!
+    @IBOutlet weak var userNameText: UITextField!
+    @IBOutlet weak var browseButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
+        self.browseButton.enabled = false
+        
+    }
+    
+    @IBAction func submitUserName(sender: UIButton) {
+        self.peerID = MCPeerID(displayName: userNameText.text)
+    
+        sender.enabled = false
+        self.userNameText.enabled = false
+        
+        self.browseButton.enabled = true
+        
         self.session = MCSession(peer: peerID)
         self.session.delegate = self
         
         // create the browser viewcontroller with a unique service name
         self.browser = MCBrowserViewController(serviceType:serviceType,
             session:self.session)
+        
+        self.browser.maximumNumberOfPeers = 4
         
         self.browser.delegate = self;
         
@@ -47,7 +60,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         self.assistant.start()
     }
     
-    @IBAction func sendChat(sender: UIButton) {
+    
+/*    @IBAction func sendChat(sender: UIButton) {
         // Bundle up the text in the message field, and send it off to all
         // connected peers
         
@@ -67,26 +81,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         
         self.messageField.text = ""
     }
-    
-    func updateChat(text : String, fromPeer peerID: MCPeerID) {
-        // Appends some text to the chat view
-        
-        // If this peer ID is the local device's peer ID, then show the name
-        // as "Me"
-        var name : String
-        
-        switch peerID {
-        case self.peerID:
-            name = "Me"
-        default:
-            name = peerID.displayName
-        }
-        
-        // Add the name to the message and display it
-        let message = "\(name): \(text)\n"
-        self.chatView.text = self.chatView.text + message
-        
-    }
+*/
     
     @IBAction func showBrowser(sender: UIButton) {
         // Show the browser view controller
@@ -117,7 +112,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
                 
                 var msg = NSString(data: data, encoding: NSUTF8StringEncoding)
                 
-                self.updateChat(msg! as String, fromPeer: peerID)
+//                self.updateChat(msg! as String, fromPeer: peerID)
             }
     }
     
@@ -144,6 +139,10 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     
     func session(session: MCSession!, peer peerID: MCPeerID!,
         didChangeState state: MCSessionState)  {
+            
+            if state == MCSessionState.Connected {
+                self.userListView.text = self.userListView.text + peerID.displayName
+            }
             // Called when a connected peer changes state (for example, goes offline)
             
     }
