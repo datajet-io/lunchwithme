@@ -21,6 +21,9 @@
                                 <rect key="frame" x="16" y="225" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="onTextChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="9aa-Oe-hDE"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-XL-9Tc">
                                 <rect key="frame" x="55.5" y="336" width="211" height="30"/>
@@ -43,6 +46,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Lunch With Me" id="Kh3-vL-ocu"/>
                     <connections>
+                        <outlet property="startLookingForUsersButton" destination="ekb-XL-9Tc" id="Pbo-D4-r8a"/>
                         <outlet property="userNameText" destination="NSL-qF-hIo" id="kqt-Rw-FgG"/>
                     </connections>
                 </viewController>

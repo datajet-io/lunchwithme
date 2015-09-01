@@ -41,8 +41,12 @@ class UserNameListTableViewController: UITableViewController, MCBrowserViewContr
         
         // tell the assistant to start advertising our fabulous chat
         self.assistant.start()
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
                 
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "showBrowser:"), animated: true)
+        
+        self.presentViewController(self.browser, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

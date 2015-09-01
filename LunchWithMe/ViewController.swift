@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController  {
     
     let serviceType = "LunchWithMe"
     
@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.startLookingForUsersButton.enabled = false
                 
     }
     
@@ -26,6 +28,11 @@ class ViewController: UIViewController {
         if let dest = segue.destinationViewController as? UserNameListTableViewController {
             dest.userName = self.userNameText.text
         }
+    }
+    
+    @IBAction func onTextChange(sender: UITextField) {
+    
+        self.startLookingForUsersButton.enabled = self.userNameText.text.isEmpty == false
     }
 
 }
