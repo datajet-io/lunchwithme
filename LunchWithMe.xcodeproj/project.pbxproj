@@ -14,6 +14,7 @@
 		C073D4C01B958F9900037780 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C073D4BE1B958F9900037780 /* LaunchScreen.xib */; };
 		C073D4CC1B958F9900037780 /* LunchWithMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073D4CB1B958F9900037780 /* LunchWithMeTests.swift */; };
 		C073D4D61B95DB2100037780 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C073D4D51B95DB2100037780 /* MultipeerConnectivity.framework */; };
+		C095C77C1B95ED03004C7F3D /* UserNameListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C77B1B95ED03004C7F3D /* UserNameListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		C073D4CA1B958F9900037780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C073D4CB1B958F9900037780 /* LunchWithMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchWithMeTests.swift; sourceTree = "<group>"; };
 		C073D4D51B95DB2100037780 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		C095C77B1B95ED03004C7F3D /* UserNameListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNameListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				C073D4B51B958F9900037780 /* AppDelegate.swift */,
 				C073D4B71B958F9900037780 /* ViewController.swift */,
+				C095C77B1B95ED03004C7F3D /* UserNameListTableViewController.swift */,
 				C073D4B91B958F9900037780 /* Main.storyboard */,
 				C073D4BC1B958F9900037780 /* Images.xcassets */,
 				C073D4BE1B958F9900037780 /* LaunchScreen.xib */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C095C77C1B95ED03004C7F3D /* UserNameListTableViewController.swift in Sources */,
 				C073D4B81B958F9900037780 /* ViewController.swift in Sources */,
 				C073D4B61B958F9900037780 /* AppDelegate.swift in Sources */,
 			);
@@ -417,6 +421,7 @@
 				C073D4D11B958F9900037780 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C073D4D21B958F9900037780 /* Build configuration list for PBXNativeTarget "LunchWithMeTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				C073D4D41B958F9900037780 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

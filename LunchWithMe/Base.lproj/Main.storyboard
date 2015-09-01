@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QPz-Lj-c3c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Lunch With Me-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LunchWithMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,59 +14,87 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NSL-qF-hIo">
-                                <rect key="frame" x="16" y="28" width="458" height="30"/>
+                                <rect key="frame" x="16" y="225" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYY-XU-cjs">
-                                <rect key="frame" x="16" y="66" width="64" height="30"/>
-                                <state key="normal" title="Browse">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showBrowser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0eC-td-0sT"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cl2-Dg-uFJ">
-                                <rect key="frame" x="21" y="137" width="543" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-XL-9Tc">
-                                <rect key="frame" x="515" y="28" width="49" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="49" id="iZQ-Cb-tdd"/>
-                                </constraints>
-                                <state key="normal" title="Submit">
+                                <rect key="frame" x="55.5" y="336" width="211" height="30"/>
+                                <state key="normal" title="Start looking for lunch buddies">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitUserName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wNB-Jb-SN3"/>
+                                    <segue destination="n3t-4z-6Ge" kind="show" id="bt1-oK-zgw"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ekb-XL-9Tc" firstAttribute="leading" secondItem="NSL-qF-hIo" secondAttribute="trailing" constant="41" id="Hfk-SZ-JJO"/>
-                            <constraint firstItem="NSL-qF-hIo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="JZP-NC-h6j"/>
-                            <constraint firstItem="ekb-XL-9Tc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="dSV-oi-uar"/>
-                            <constraint firstItem="NSL-qF-hIo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hUx-np-OQx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ekb-XL-9Tc" secondAttribute="trailing" constant="20" id="tmL-1e-Eql"/>
+                            <constraint firstAttribute="centerY" secondItem="ekb-XL-9Tc" secondAttribute="centerY" constant="-111" id="DAP-yM-gj2"/>
+                            <constraint firstItem="NSL-qF-hIo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ema-Ni-GLl"/>
+                            <constraint firstAttribute="centerY" secondItem="NSL-qF-hIo" secondAttribute="centerY" id="jET-rl-Jgh"/>
+                            <constraint firstItem="NSL-qF-hIo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lfo-FS-VEA"/>
+                            <constraint firstAttribute="centerX" secondItem="ekb-XL-9Tc" secondAttribute="centerX" constant="-1" id="mQ6-Th-JmO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Lunch With Me" id="Kh3-vL-ocu"/>
                     <connections>
-                        <outlet property="browseButton" destination="vYY-XU-cjs" id="hMV-2w-UhP"/>
-                        <outlet property="userListView" destination="cl2-Dg-uFJ" id="3Jx-P7-t5O"/>
-                        <outlet property="userNameText" destination="NSL-qF-hIo" id="XT3-iY-zw9"/>
+                        <outlet property="userNameText" destination="NSL-qF-hIo" id="kqt-Rw-FgG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="271" y="-447"/>
+        </scene>
+        <!--Lunch with me-->
+        <scene sceneID="cCC-je-EEJ">
+            <objects>
+                <tableViewController title="Lunch with me" id="n3t-4z-6Ge" customClass="UserNameListTableViewController" customModule="LunchWithMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="20W-k4-z4u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userNameCellIdentifier" id="UhT-kV-Mof">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhT-kV-Mof" id="62z-x6-th6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="n3t-4z-6Ge" id="wTt-JF-g3t"/>
+                            <outlet property="delegate" destination="n3t-4z-6Ge" id="7cq-HN-JJL"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1qh-F9-4dz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="718" y="-447"/>
+        </scene>
+        <!--LunchWithMe-->
+        <scene sceneID="DRg-eb-sut">
+            <objects>
+                <navigationController title="LunchWithMe" automaticallyAdjustsScrollViewInsets="NO" id="QPz-Lj-c3c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LV6-02-kN8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sxi-SO-9Pk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2px-wk-ooL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-89" y="-447"/>
         </scene>
     </scenes>
 </document>
